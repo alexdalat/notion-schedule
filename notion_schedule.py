@@ -31,7 +31,7 @@ I want to convert the following schedule into format A:
 ```
 This is for course: {course name}
 Only include items that have a valid "Type" that can be assigned. This means don't \ 
-include activities occurring during that day, etc.
+include activities occurring during that day in lab, lectures, etc.
 If week of an item is provided along with the day of the week it is due, it should \
 adjust the due date accordingly. For example, if an item is due on "Wednesday" and the \
 week is "Week of 9/6/2023", then the due date should be "9/8/2023".
