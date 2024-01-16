@@ -1,5 +1,6 @@
 import json
 import os
+import logging
 from dotenv import load_dotenv
 
 from notion_client import Client
@@ -12,8 +13,8 @@ This is format A:
         {
             "title": _____, # title of the item, try it to keep it \
                               short yet descriptive, otherwise overfill to "Note"
-            "Course": ___ ___, # Course name in format '{3-4 letters} {3 numbers}'"
-            "Type": _____, # can be one of ONLY "Assignment", "Reading", "Notes", \
+            "Course": ___ ___, # Course name in format '{one word} {3 numbers}'"
+            "Type": _____, # can be one of ONLY "Assignment", "Video Lecture", "Reading", "Notes", \
                                     "Essay", "Group Work", "Project", "Presentation", \
                                     "Study", "Quiz", or "Exam"
             "Due date": _____, # Due date of the item in "%Y-%m-%d" format
@@ -61,7 +62,7 @@ CLASSES_DATABASE_ID = os.getenv("CLASSES_DATABASE_ID")
 # Initialize Notion client
 notion = Client(
     auth=NOTION_API_TOKEN,
-    # log_level=logging.DEBUG
+    #log_level=logging.DEBUG
 )
 
 with open("schedule.json", "r") as f:
@@ -92,6 +93,7 @@ def get_icon_for_type(type_name):
         "Study": "☁️",
         "Quiz": "📓",
         "Exam": "🏁",
+        "Lab": "🧪",
     }
     return icons.get(type_name, "📋")
 
@@ -100,6 +102,9 @@ for entry in schedule_data:
     # Link to the correct class
     course_name = entry["Course"]
     class_row_id = find_class_row(course_name)
+    if not class_row_id:
+        print(f"Could not find class {course_name} in Notion database!")
+        exit()
 
     # # make sure everything is ready
     # print(f"Title: {entry['title']}")
@@ -120,7 +125,7 @@ for entry in schedule_data:
             "title": {"title": [{"text": {"content": entry["title"]}}]},
             "Type": {"select": {"name": entry["Type"]}},
             "Due date": {"date": {"start": entry["Due date"]}},
-            "Note": {"rich_text": [{"text": {"content": entry["Note"]}}]},
+            "Notes": {"rich_text": [{"text": {"content": entry["Note"]}}]},
             "automatic?": {"checkbox": True},
             "Course": {"relation": [{"id": class_row_id}]},
         },
