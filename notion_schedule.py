@@ -7,6 +7,9 @@ from notion_client import Client
 
 # Step 1: Tell ChatGPT 4 this (subtitute {} with the correct values):
 """
+This is for course: {course name}
+The year is: {year}
+
 This is format A:
 ```py
     [
@@ -30,7 +33,6 @@ I want to convert the following schedule into format A:
 ```
 {paste schedule here}
 ```
-This is for course: {course name}
 Only include items that have a valid "Type" that can be assigned. This means don't \ 
 include activities occurring during that day in lab, lectures, etc.
 If week of an item is provided along with the day of the week it is due, it should \
