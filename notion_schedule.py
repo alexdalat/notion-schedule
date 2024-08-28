@@ -44,6 +44,7 @@ The distributed/adjusted due date should never be after the original due date.
 Please do so and send it back to me, making sure it conforms to format A.
 Include all the valid types, including all valid homework assignments. Do not stop \
 until you have included all valid types.
+Do not add comments. I want a clean JSON output.
 """
 
 # Step 2: Copy the output into the file schedule.json, making sure it is valid JSON
