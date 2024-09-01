@@ -93,6 +93,7 @@ def get_icon_for_type(type_name):
         "Group Work": "👥",
         "Project": "📁",
         "Presentation": "📊",
+        "Video Lecture": "📺",
         "Study": "☁️",
         "Quiz": "📓",
         "Exam": "🏁",
