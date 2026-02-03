@@ -14,8 +14,8 @@ This script automates the process of transferring course schedules (assignments,
 Clone the repository and install the dependencies:
 
 ```bash
-git clone https://github.com/yourusername/notion-schedule-automator.git
-cd notion-schedule-automator
+git clone https://github.com/alexdalat/notion-schedule
+cd notion-schedule
 pip install notion-client python-dotenv
 ```
 
